@@ -6,6 +6,7 @@ canary:
   environment: production
   description: 'Canary'
   payload:
+    helm: helm3
     value_files: ["./config/production.yml", "./config/_common.yml"]
     release: production-myapp
     namespace: example-helm
@@ -22,6 +23,7 @@ production:
   environment: production
   description: 'Production'
   payload:
+    helm: helm3
     value_files: ["./config/production.yml", "./config/_common.yml"]
     # Remove the canary deployment if it exists when doing a full prod deploy.
     remove_canary: true
@@ -38,6 +40,7 @@ staging:
   environment: staging
   description: 'Staging'
   payload:
+    helm: helm3
     value_files: ["./config/staging.yml", "./config/_common.yml"]
     release: staging-myapp
     namespace: example-helm
@@ -57,6 +60,7 @@ review:
   environment: pr${{ pr }}
   description: 'Review'
   payload:
+    helm: helm3
     value_files: ["./config/review.yml", "./config/_common.yml"]
     release: review-myapp-${{ pr }}
     namespace: example-helm
